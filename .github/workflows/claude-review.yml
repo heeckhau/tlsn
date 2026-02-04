@@ -32,7 +32,13 @@ jobs:
 
             After completing your review, post it as a PR comment using:
             gh pr comment ${{ github.event.pull_request.number }} --body "YOUR_REVIEW_HERE"
-          claude_args: "--max-turns 10 --allowedTools 'Bash(gh *),Bash(git *)'"
+          claude_args: "--max-turns 10"
+          settings: |
+            {
+              "permissions": {
+                "allow": ["Bash(gh *)", "Bash(git *)"]
+              }
+            }
       - name: Upload Claude execution log
         if: always()
         uses: actions/upload-artifact@v4
