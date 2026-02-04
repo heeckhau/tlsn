@@ -32,6 +32,10 @@ jobs:
 
             Follow the guidelines in .github/prompts/review.md
           claude_args: "--max-turns 10 --allowedTools 'Bash(gh *)'"
-      - name: Show Claude execution log
+      - name: Upload Claude execution log
         if: always()
-        run: cat /home/runner/work/_temp/claude-execution-output.json
+        uses: actions/upload-artifact@v4
+        with:
+          name: claude-execution-log
+          path: /home/runner/work/_temp/claude-execution-output.json
+          retention-days: 7
