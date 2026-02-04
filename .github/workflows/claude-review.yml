@@ -28,9 +28,10 @@ jobs:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           prompt: |
-            /review
+            Review PR #${{ github.event.pull_request.number }} following the guidelines in .github/prompts/review.md
 
-            Follow the guidelines in .github/prompts/review.md
+            After completing your review, post it as a PR comment using:
+            gh pr comment ${{ github.event.pull_request.number }} --body "YOUR_REVIEW_HERE"
           claude_args: "--max-turns 10 --allowedTools 'Bash(gh *),Bash(git *)'"
       - name: Upload Claude execution log
         if: always()
