@@ -29,10 +29,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           prompt: |
             Review PR #${{ github.event.pull_request.number }} following the guidelines in .github/prompts/review.md
-
-            After completing your review, post it as a PR comment using:
-            gh pr comment ${{ github.event.pull_request.number }} --body "YOUR_REVIEW_HERE"
           claude_args: "--max-turns 10"
+          track_progress: "true"
           settings: |
             {
               "permissions": {
