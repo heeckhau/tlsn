@@ -31,7 +31,7 @@ jobs:
             /review
 
             Follow the guidelines in .github/prompts/review.md
-          claude_args: "--max-turns 10"
+          claude_args: "--max-turns 10 --allowedTools 'Bash(gh *)'"
       - name: Show Claude execution log
         if: always()
         run: cat /home/runner/work/_temp/claude-execution-output.json
