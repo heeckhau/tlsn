@@ -19,7 +19,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
-          fetch-depth: 1
+          fetch-depth: 0  # Full history for git log
 
       - name: Run Claude Code Review
         id: claude-review
@@ -31,7 +31,7 @@ jobs:
             /review
 
             Follow the guidelines in .github/prompts/review.md
-          claude_args: "--max-turns 10 --allowedTools 'Bash(gh *)'"
+          claude_args: "--max-turns 10 --allowedTools 'Bash(gh *),Bash(git *)'"
       - name: Upload Claude execution log
         if: always()
         uses: actions/upload-artifact@v4
