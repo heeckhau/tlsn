@@ -10,7 +10,7 @@ jobs:
   claude-response:
     if: |
       contains(github.event.comment.body, '@claude') &&
-      github.event.comment.author_association in fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]')
+      contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.comment.author_association)
     runs-on: ubuntu-latest
     permissions:
       contents: read
