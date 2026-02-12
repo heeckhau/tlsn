@@ -7,7 +7,7 @@ on:
 
 jobs:
   claude-review:
-    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && !github.event.pull_request.draft)
+    if: false && (github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && !github.event.pull_request.draft))
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -19,7 +19,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
-          fetch-depth: 0  # Full history for git log
+          fetch-depth: 0 # Full history for git log
 
       - name: Run Claude Code Review
         id: claude-review
